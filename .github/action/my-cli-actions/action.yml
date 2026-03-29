@@ -6,8 +6,19 @@ inputs:
   version:
     description: "The CLI version to install"
     required: false
-    default: "latest"
+    default: "1.2.3"
 
 runs:
-  using: "node16"
-  main: "index.js"
+  using: "composite"
+  steps:
+    - name: Download and Install MyCLI
+      shell: bash
+      run: |
+        echo "Installing MyCLI version: ${{ inputs.version }}"
+        # Ejemplo: Simulamos la descarga y creación del binario
+        # En un caso real aquí usarías curl o wget
+        sudo touch /usr/local/bin/mycli
+        sudo chmod +x /usr/local/bin/mycli
+        
+        # Si necesitas añadir una carpeta específica al PATH de GitHub:
+        # echo "/custom/path/to/bin" >> $GITHUB_PATH
